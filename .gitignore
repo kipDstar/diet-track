@@ -9,4 +9,4 @@ __pycache__/
 .vscode/ # If you use VS Code and want to ignore settings
 npm-debug.log*
 yarn-debug.log*
-.idea/ # If you use IntelliJ/PyCharm
+.idea/ # If you use IntelliJ/PyCharm~
