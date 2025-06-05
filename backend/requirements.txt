@@ -1,0 +1,4 @@
+Flask==2.3.2 # Or a newer stable version
+Flask-Cors==4.0.0
+firebase-admin==6.2.0 # For Firestore interaction
+# To Add other dependencies as we build out the backend (e.g., pandas for data handling)
