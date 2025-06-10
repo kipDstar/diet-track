@@ -28,55 +28,220 @@ const initialAuthToken = typeof window.__initial_auth_token !== 'undefined'
 
 // Food database (simplified for demonstration, would be more extensive in a real app/backend)
 const foodDatabase = [
-  { name: 'Ugali (white maize flour)', caloriesPer100g: 350, proteinPer100g: 8, carbsPer100g: 78, fatPer100g: 2, unit: 'g', type: 'carb' },
-  { name: 'Tilapia (cooked)', caloriesPer100g: 128, proteinPer100g: 26, carbsPer100g: 0, fatPer100g: 2.7, unit: 'g', type: 'protein' },
-  { name: 'Chicken Breast (cooked)', caloriesPer100g: 165, proteinPer100g: 31, carbsPer100g: 0, fatPer100g: 3.6, unit: 'g', type: 'protein' },
-  { name: 'Milk (whole)', caloriesPer100g: 61, proteinPer100g: 3.2, carbsPer100g: 4.7, fatPer100g: 3.3, unit: 'ml', type: 'dairy' },
-  { name: 'Yoghurt (plain, low fat)', caloriesPer100g: 63, proteinPer100g: 5.7, carbsPer100g: 7, fatPer100g: 1.5, unit: 'g', type: 'dairy' },
-  { name: 'Lettuce', caloriesPer100g: 15, proteinPer100g: 1.4, carbsPer100g: 2.9, fatPer100g: 0.2, unit: 'g', type: 'veg' },
-  { name: 'Cabbage', caloriesPer100g: 25, proteinPer100g: 1.3, carbsPer100g: 5.8, fatPer100g: 0.1, unit: 'g', type: 'veg' },
-  { name: 'Kale', caloriesPer100g: 49, proteinPer100g: 3.3, carbsPer100g: 8.8, fatPer100g: 0.9, unit: 'g', type: 'veg' },
-  { name: 'Spinach', caloriesPer100g: 23, proteinPer100g: 2.9, carbsPer100g: 3.6, fatPer100g: 0.4, unit: 'g', type: 'veg' },
-  { name: 'Rice (cooked white)', caloriesPer100g: 130, proteinPer100g: 2.7, carbsPer100g: 28, fatPer100g: 0.3, unit: 'g', type: 'carb' },
-  { name: 'Eggs (large)', caloriesPerUnit: 78, proteinPerUnit: 6.3, carbsPerUnit: 0.6, fatPerUnit: 5.3, unit: 'unit', type: 'protein' },
-  { name: 'Oats (dry)', caloriesPer100g: 389, proteinPer100g: 16.9, carbsPer100g: 66.3, fatPer100g: 6.9, unit: 'g', type: 'carb' },
-  { name: 'Goat Meat (cooked)', caloriesPer100g: 143, proteinPer100g: 27.1, carbsPer100g: 0, fatPer100g: 3.8, unit: 'g', type: 'protein' },
-  { name: 'Beef (lean, cooked)', caloriesPer100g: 250, proteinPer100g: 26, carbsPer100g: 0, fatPer100g: 15, unit: 'g', type: 'protein' },
-  { name: 'Pilau (rice & beef)', caloriesPer100g: 180, proteinPer100g: 8, carbsPer100g: 25, fatPer100g: 6, unit: 'g', type: 'dish' },
-  { name: 'Sweet Potatoes (boiled)', caloriesPer100g: 86, proteinPer100g: 1.6, carbsPer100g: 20, fatPer100g: 0.1, unit: 'g', type: 'carb' },
-  { name: 'Porridge (maize flour)', caloriesPer100g: 60, proteinPer100g: 2, carbsPer100g: 12, fatPer100g: 1, unit: 'g', type: 'carb' },
-  { name: 'Pasta (cooked)', caloriesPer100g: 158, proteinPer100g: 5.8, carbsPer100g: 31, fatPer100g: 0.9, unit: 'g', type: 'carb' },
-  { name: 'Avocado', caloriesPer100g: 160, proteinPer100g: 2, carbsPer100g: 8.5, fatPer100g: 14.7, unit: 'g', type: 'fat' },
-  { name: 'Mango', caloriesPer100g: 60, proteinPer100g: 0.8, carbsPer100g: 15, fatPer100g: 0.4, unit: 'g', type: 'fruit' },
-  { name: 'Carrots', caloriesPer100g: 41, proteinPer100g: 0.9, carbsPer100g: 9.6, fatPer100g: 0.2, unit: 'g', type: 'veg' },
-  { name: 'Beans (cooked)', caloriesPer100g: 116, proteinPer100g: 7.8, carbsPer100g: 20.7, fatPer100g: 0.5, unit: 'g', type: 'protein' },
-  { name: 'Sukuma Wiki (collard greens, cooked)', caloriesPer100g: 32, proteinPer100g: 2.7, carbsPer100g: 6, fatPer100g: 0.6, unit: 'g', type: 'veg' },
-  { name: 'Samosa (beef/veg)', caloriesPerUnit: 250, proteinPerUnit: 8, carbsPerUnit: 25, fatPerUnit: 15, unit: 'unit', type: 'snack' },
-  { name: 'Chapati', caloriesPerUnit: 180, proteinPerUnit: 5, carbsPerUnit: 30, fatPerUnit: 5, unit: 'unit', type: 'carb' },
-  { name: 'Kaimati', caloriesPerUnit: 80, proteinPerUnit: 1, carbsPerUnit: 15, fatPerUnit: 2, unit: 'unit', type: 'snack' },
-  { name: 'Mokimo (Maize, Potatoes, Beans, Greens)', caloriesPer100g: 150, proteinPer100g: 5, carbsPer100g: 25, fatPer100g: 4, unit: 'g', type: 'dish' },
-  { name: 'Githeri (Maize and Beans)', caloriesPer100g: 130, proteinPer100g: 6, carbsPer100g: 23, fatPer100g: 2, unit: 'g', type: 'dish' },
-  { name: 'Dengu (Lentils, cooked)', caloriesPer100g: 116, proteinPer100g: 9, carbsPer100g: 20, fatPer100g: 0.4, unit: 'g', type: 'protein' },
-  { name: 'Mchicha (Amaranth greens, cooked)', caloriesPer100g: 29, proteinPer100g: 3, carbsPer100g: 5, fatPer100g: 0.3, unit: 'g', type: 'veg' },
-  { name: 'Matoke (Green Bananas, cooked)', caloriesPer100g: 122, proteinPer100g: 1.3, carbsPer100g: 31, fatPer100g: 0.4, unit: 'g', type: 'carb' },
-  { name: 'Mboga Kienyeji (Traditional Greens)', caloriesPer100g: 30, proteinPer100g: 2.5, carbsPer100g: 5, fatPer100g: 0.5, unit: 'g', type: 'veg' },
-  { name: 'Mbaazi (Pigeon Peas, cooked)', caloriesPer100g: 120, proteinPer100g: 7, carbsPer100g: 21, fatPer100g: 0.5, unit: 'g', type: 'protein' },
-  { name: 'Arrow Roots', caloriesPer100g: 65, proteinPer100g: 1.5, carbsPer100g: 15, fatPer100g: 0.1, unit: 'g', type: 'carb' },
-  { name: 'Cassava', caloriesPer100g: 160, proteinPer100g: 1.4, carbsPer100g: 38, fatPer100g: 0.3, unit: 'g', type: 'carb' },
-  { name: 'Wimbi (Millet Flour)', caloriesPer100g: 378, proteinPer100g: 11, carbsPer100g: 73, fatPer100g: 4, unit: 'g', type: 'carb' },
-  { name: 'Nduma (Taro)', caloriesPer100g: 112, proteinPer100g: 1.5, carbsPer100g: 27, fatPer100g: 0.2, unit: 'g', type: 'carb' },
+  { name: 'Ugali (white maize flour)', caloriesPer100g: 350, proteinPer100g: 8, carbsPer100g: 78, fatPer100g: 2, unit: 'g', type: 'carb', mealCategory: ['lunch', 'dinner'] },
+  { name: 'Tilapia (cooked)', caloriesPer100g: 128, proteinPer100g: 26, carbsPer100g: 0, fatPer100g: 2.7, unit: 'g', type: 'protein', mealCategory: ['lunch', 'dinner'] },
+  { name: 'Chicken Breast (cooked)', caloriesPer100g: 165, proteinPer100g: 31, carbsPer100g: 0, fatPer100g: 3.6, unit: 'g', type: 'protein', mealCategory: ['breakfast', 'lunch', 'dinner'] },
+  { name: 'Milk (whole)', caloriesPer100g: 61, proteinPer100g: 3.2, carbsPer100g: 4.7, fatPer100g: 3.3, unit: 'ml', type: 'dairy', mealCategory: ['breakfast'] },
+  { name: 'Yoghurt (plain, low fat)', caloriesPer100g: 63, proteinPer100g: 5.7, carbsPer100g: 7, fatPer100g: 1.5, unit: 'g', type: 'dairy', mealCategory: ['breakfast', 'snack'] },
+  { name: 'Lettuce', caloriesPer100g: 15, proteinPer100g: 1.4, carbsPer100g: 2.9, fatPer100g: 0.2, unit: 'g', type: 'veg', mealCategory: ['lunch', 'dinner'] },
+  { name: 'Cabbage', caloriesPer100g: 25, proteinPer100g: 1.3, carbsPer100g: 5.8, fatPer100g: 0.1, unit: 'g', type: 'veg', mealCategory: ['lunch', 'dinner'] },
+  { name: 'Kale', caloriesPer100g: 49, proteinPer100g: 3.3, carbsPer100g: 8.8, fatPer100g: 0.9, unit: 'g', type: 'veg', mealCategory: ['breakfast', 'lunch', 'dinner'] },
+  { name: 'Spinach', caloriesPer100g: 23, proteinPer100g: 2.9, carbsPer100g: 3.6, fatPer100g: 0.4, unit: 'g', type: 'veg', mealCategory: ['breakfast', 'lunch', 'dinner'] },
+  { name: 'Rice (cooked white)', caloriesPer100g: 130, proteinPer100g: 2.7, carbsPer100g: 28, fatPer100g: 0.3, unit: 'g', type: 'carb', mealCategory: ['lunch', 'dinner'] },
+  { name: 'Eggs (large)', caloriesPerUnit: 78, proteinPerUnit: 6.3, carbsPerUnit: 0.6, fatPerUnit: 5.3, unit: 'unit', type: 'protein', mealCategory: ['breakfast', 'lunch', 'dinner'] },
+  { name: 'Oats (dry)', caloriesPer100g: 389, proteinPer100g: 16.9, carbsPer100g: 66.3, fatPer100g: 6.9, unit: 'g', type: 'carb', mealCategory: ['breakfast'] },
+  { name: 'Goat Meat (cooked)', caloriesPer100g: 143, proteinPer100g: 27.1, carbsPer100g: 0, fatPer100g: 3.8, unit: 'g', type: 'protein', mealCategory: ['lunch', 'dinner'] },
+  { name: 'Beef (lean, cooked)', caloriesPer100g: 250, proteinPer100g: 26, carbsPer100g: 0, fatPer100g: 15, unit: 'g', type: 'protein', mealCategory: ['lunch', 'dinner'] },
+  { name: 'Pilau (rice & beef)', caloriesPer100g: 180, proteinPer100g: 8, carbsPer100g: 25, fatPer100g: 6, unit: 'g', type: 'dish', mealCategory: ['lunch', 'dinner'] },
+  { name: 'Sweet Potatoes (boiled)', caloriesPer100g: 86, proteinPer100g: 1.6, carbsPer100g: 20, fatPer100g: 0.1, unit: 'g', type: 'carb', mealCategory: ['breakfast', 'lunch', 'dinner'] },
+  { name: 'Porridge (maize flour)', caloriesPer100g: 60, proteinPer100g: 2, carbsPer100g: 12, fatPer100g: 1, unit: 'g', type: 'carb', mealCategory: ['breakfast'] },
+  { name: 'Pasta (cooked)', caloriesPer100g: 158, proteinPer100g: 5.8, carbsPer100g: 31, fatPer100g: 0.9, unit: 'g', type: 'carb', mealCategory: ['lunch', 'dinner'] },
+  { name: 'Avocado', caloriesPer100g: 160, proteinPer100g: 2, carbsPer100g: 8.5, fatPer100g: 14.7, unit: 'g', type: 'fat', mealCategory: ['breakfast', 'lunch', 'dinner'] },
+  { name: 'Mango', caloriesPer100g: 60, proteinPer100g: 0.8, carbsPer100g: 15, fatPer100g: 0.4, unit: 'g', type: 'fruit', mealCategory: ['breakfast', 'snack', 'lunch'] },
+  { name: 'Carrots', caloriesPer100g: 41, proteinPer100g: 0.9, carbsPer100g: 9.6, fatPer100g: 0.2, unit: 'g', type: 'veg', mealCategory: ['breakfast', 'lunch', 'dinner'] },
+  { name: 'Beans (cooked)', caloriesPer100g: 116, proteinPer100g: 7.8, carbsPer100g: 20.7, fatPer100g: 0.5, unit: 'g', type: 'protein', mealCategory: ['breakfast', 'lunch', 'dinner'] },
+  { name: 'Sukuma Wiki (collard greens, cooked)', caloriesPer100g: 32, proteinPer100g: 2.7, carbsPer100g: 6, fatPer100g: 0.6, unit: 'g', type: 'veg', mealCategory: ['lunch', 'dinner'] },
+  { name: 'Samosa (beef/veg)', caloriesPerUnit: 250, proteinPerUnit: 8, carbsPerUnit: 25, fatPerUnit: 15, unit: 'unit', type: 'snack', mealCategory: ['breakfast', 'snack', 'lunch'] },
+  { name: 'Chapati', caloriesPerUnit: 180, proteinPerUnit: 5, carbsPerUnit: 30, fatPerUnit: 5, unit: 'unit', type: 'carb', mealCategory: ['breakfast', 'lunch', 'dinner'] },
+  { name: 'Kaimati', caloriesPerUnit: 80, proteinPerUnit: 1, carbsPerUnit: 15, fatPerUnit: 2, unit: 'unit', type: 'snack', mealCategory: ['breakfast', 'snack'] },
+  { name: 'Mokimo (Maize, Potatoes, Beans, Greens)', caloriesPer100g: 150, proteinPer100g: 5, carbsPer100g: 25, fatPer100g: 4, unit: 'g', type: 'dish', mealCategory: ['lunch', 'dinner'] },
+  { name: 'Githeri (Maize and Beans)', caloriesPer100g: 130, proteinPer100g: 6, carbsPer100g: 23, fatPer100g: 2, unit: 'g', type: 'dish', mealCategory: ['lunch', 'dinner'] },
+  { name: 'Dengu (Lentils, cooked)', caloriesPer100g: 116, proteinPer100g: 9, carbsPer100g: 20, fatPer100g: 0.4, unit: 'g', type: 'protein', mealCategory: ['lunch', 'dinner'] },
+  { name: 'Mchicha (Amaranth greens, cooked)', caloriesPer100g: 29, proteinPer100g: 3, carbsPer100g: 5, fatPer100g: 0.3, unit: 'g', type: 'veg', mealCategory: ['lunch', 'dinner'] },
+  { name: 'Matoke (Green Bananas, cooked)', caloriesPer100g: 122, proteinPer100g: 1.3, carbsPer100g: 31, fatPer100g: 0.4, unit: 'g', type: 'carb', mealCategory: ['breakfast', 'lunch', 'dinner'] },
+  { name: 'Mboga Kienyeji (Traditional Greens)', caloriesPer100g: 30, proteinPer100g: 2.5, carbsPer100g: 5, fatPer100g: 0.5, unit: 'g', type: 'veg', mealCategory: ['lunch', 'dinner'] },
+  { name: 'Mbaazi (Pigeon Peas, cooked)', caloriesPer100g: 120, proteinPer100g: 7, carbsPer100g: 21, fatPer100g: 0.5, unit: 'g', type: 'protein', mealCategory: ['lunch', 'dinner'] },
+  { name: 'Arrow Roots', caloriesPer100g: 65, proteinPer100g: 1.5, carbsPer100g: 15, fatPer100g: 0.1, unit: 'g', type: 'carb', mealCategory: ['breakfast', 'lunch'] },
+  { name: 'Cassava', caloriesPer100g: 160, proteinPer100g: 1.4, carbsPer100g: 38, fatPer100g: 0.3, unit: 'g', type: 'carb', mealCategory: ['breakfast', 'lunch', 'dinner'] },
+  { name: 'Wimbi (Millet Flour)', caloriesPer100g: 378, proteinPer100g: 11, carbsPer100g: 73, fatPer100g: 4, unit: 'g', type: 'carb', mealCategory: ['breakfast', 'snack'] },
+  { name: 'Nduma (Taro)', caloriesPer100g: 112, proteinPer100g: 1.5, carbsPer100g: 27, fatPer100g: 0.2, unit: 'g', type: 'carb', mealCategory: ['breakfast', 'lunch'] },
+  { name: 'Milk Tea', caloriesPer100g: 54, proteinPer100g: 1.6, carbsPer100g: 8, fatPer100g: 1.5, unit: 'ml', type: 'beverage', mealCategory: ['breakfast'] },
+  { name: 'Black Tea', caloriesPer100g: 1, proteinPer100g: 0, carbsPer100g: 0.3, fatPer100g: 0, unit: 'ml', type: 'beverage', mealCategory: ['breakfast'] },
+  { name: 'Coffee', caloriesPer100g: 2, proteinPer100g: 0.3, carbsPer100g: 0, fatPer100g: 0, unit: 'ml', type: 'beverage', mealCategory: ['breakfast'] },
 ];
 
-// Fisher-Yates (Knuth) Shuffle for array randomization
-const shuffleArray = (array) => {
-  let currentIndex = array.length, randomIndex;
-  while (currentIndex !== 0) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+// Helper: Calculate calories for a food and portion
+function getFoodNutrition(food, portionGrams = 100, portionUnits = 1) {
+  if (food.unit === 'unit' && food.caloriesPerUnit) {
+    return {
+      calories: food.caloriesPerUnit * portionUnits,
+      protein: (food.proteinPerUnit || 0) * portionUnits,
+      carbs: (food.carbsPerUnit || 0) * portionUnits,
+      fat: (food.fatPerUnit || 0) * portionUnits,
+      portion: `${portionUnits} unit${portionUnits > 1 ? 's' : ''}`,
+    };
+  } else if (food.caloriesPer100g) {
+    const factor = portionGrams / 100;
+    return {
+      calories: food.caloriesPer100g * factor,
+      protein: (food.proteinPer100g || 0) * factor,
+      carbs: (food.carbsPer100g || 0) * factor,
+      fat: (food.fatPer100g || 0) * factor,
+      portion: `${portionGrams}g`,
+    };
   }
-  return array;
-};
+  return { calories: 0, protein: 0, carbs: 0, fat: 0, portion: 'N/A' };
+}
+
+// Helper: Pick a set of foods for a meal, maximizing variety and matching calories
+function pickFoodsForMeal({
+  mealType,
+  calorieTarget,
+  userFoods,
+  foodDatabase,
+  usedFoodsSet,
+  weekUsedFoodsSet,
+  maxItems = 5,
+  minPortion = 100,
+  maxPortion = 300,
+}) {
+  // 1. Build candidate list: user foods first, then DB foods, filter by mealType and not already used
+  const userList = userFoods[mealType] || [];
+  const dbList = foodDatabase.filter(
+    f =>
+      f.mealCategory &&
+      f.mealCategory.includes(mealType) &&
+      !userList.some(u => f.name.toLowerCase().includes(u.toLowerCase()))
+  );
+  // Combine and filter out foods already used this day and this week
+  let candidates = [
+    ...userList
+      .map(name =>
+        foodDatabase.find(
+          f =>
+            f.name.toLowerCase().includes(name.toLowerCase()) &&
+            f.mealCategory.includes(mealType)
+        )
+      )
+      .filter(Boolean),
+    ...dbList,
+  ].filter(
+    f => !usedFoodsSet.has(f.name) && !weekUsedFoodsSet.has(f.name)
+  );
+
+  // If not enough, allow foods not used today but used earlier in the week
+  if (candidates.length < maxItems) {
+    candidates = [
+      ...candidates,
+      ...dbList.filter(
+        f => !usedFoodsSet.has(f.name) && weekUsedFoodsSet.has(f.name)
+      ),
+    ];
+  }
+
+  // If still not enough, allow repeats from the week (but not from today)
+  if (candidates.length < maxItems) {
+    candidates = [
+      ...candidates,
+      ...dbList.filter(f => !usedFoodsSet.has(f.name)),
+    ];
+  }
+
+  // Shuffle candidates for more variety
+  for (let i = candidates.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [candidates[i], candidates[j]] = [candidates[j], candidates[i]];
+  }
+
+  // 2. Sort by calories descending (to help reach target faster)
+  candidates = [...candidates].sort((a, b) => {
+    const aCal =
+      a.unit === 'unit'
+        ? a.caloriesPerUnit || 0
+        : a.caloriesPer100g || 0;
+    const bCal =
+      b.unit === 'unit'
+        ? b.caloriesPerUnit || 0
+        : b.caloriesPer100g || 0;
+    return bCal - aCal;
+  });
+
+  // 3. Greedy selection: add foods, adjust portions, stop at calorieTarget or maxItems
+  let totalCals = 0;
+  let mealFoods = [];
+  let i = 0;
+
+  while (
+    totalCals < calorieTarget * 0.95 &&
+    mealFoods.length < maxItems &&
+    i < candidates.length
+  ) {
+    const food = candidates[i];
+    if (!food) break;
+    // Try to pick a reasonable portion to approach the target
+    let portionGrams = minPortion;
+    let portionUnits = 1;
+    if (food.unit === 'unit' && food.caloriesPerUnit) {
+      portionUnits = 1;
+      if (
+        totalCals + food.caloriesPerUnit * 2 <= calorieTarget &&
+        food.caloriesPerUnit < 200
+      ) {
+        portionUnits = 2;
+      }
+    } else if (food.caloriesPer100g) {
+      let bestPortion = minPortion;
+      let bestCals = food.caloriesPer100g * (minPortion / 100);
+      for (
+        let grams = minPortion;
+        grams <= maxPortion;
+        grams += 50
+      ) {
+        const cals = food.caloriesPer100g * (grams / 100);
+        if (
+          totalCals + cals <= calorieTarget + 50 &&
+          cals > bestCals
+        ) {
+          bestPortion = grams;
+          bestCals = cals;
+        }
+      }
+      portionGrams = bestPortion;
+    }
+    // Add food
+    const nutrition = getFoodNutrition(food, portionGrams, portionUnits);
+    mealFoods.push({
+      name: food.name,
+      portion: nutrition.portion,
+      calories: nutrition.calories,
+      protein: nutrition.protein,
+      carbs: nutrition.carbs,
+      fat: nutrition.fat,
+    });
+    totalCals += nutrition.calories;
+    usedFoodsSet.add(food.name);
+    weekUsedFoodsSet.add(food.name);
+    i++;
+  }
+
+  // If still under target, allow a repeat of the highest-calorie food (but only if not already used today)
+  if (
+    totalCals < calorieTarget * 0.85 &&
+    mealFoods.length > 0 &&
+    mealFoods.length < maxItems
+  ) {
+    const topFood = mealFoods[0];
+    const needed = Math.ceil(
+      (calorieTarget - totalCals) / (topFood.calories || 1)
+    );
+    for (let j = 0; j < needed && mealFoods.length < maxItems; j++) {
+      mealFoods.push({ ...topFood });
+      totalCals += topFood.calories;
+    }
+  }
+
+  return mealFoods;
+}
 
 
 function App() {
@@ -99,6 +264,11 @@ function App() {
   const [customMealInput, setCustomMealInput] = useState('');
   const [customMealAnalysis, setCustomMealAnalysis] = useState(null);
   const [message, setMessage] = useState('');
+  const [userFoods, setUserFoods] = useState({
+    breakfast: [],
+    lunch: [],
+    dinner: [],
+  });
 
   // Memoize activityMultipliers using useMemo so it's only created once
   const activityMultipliers = useMemo(() => ({
@@ -239,160 +409,33 @@ function App() {
   // Improved meal generation using useCallback
   const generateWeeklyMenu = useCallback(async () => {
     if (calorieGoal === 0 || isNaN(parseFloat(calorieGoal))) {
-      setMessage("Please calculate your calorie goal first and ensure it's a valid number.");
+      setMessage(
+        "Please calculate your calorie goal first and ensure it's a valid number."
+      );
       return;
     }
 
-    const dailyTargetCalories = parseFloat(calorieGoal);
     const generatedMenu = [];
-    const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    const daysOfWeek = [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ];
 
-    const getUniqueMealForTarget = (targetCals, mealType, excludedFoods = []) => {
-      let mealItems = [];
-      let currentCals = 0;
-      const maxAttempts = 50; // Prevent infinite loops
-      let availableFoodsForMeal = shuffleArray([...foodDatabase]);
-
-      availableFoodsForMeal = availableFoodsForMeal.filter(f => !excludedFoods.includes(f.name));
-
-      const getFoodByCategory = (categoryType, currentAvailable) => {
-        return shuffleArray(currentAvailable.filter(f => f.type === categoryType));
-      };
-
-      const addFoodItem = (food, portionValue, portionUnit) => {
-          // Ensure food and portionValue are valid before adding
-          if (!food || isNaN(portionValue) || portionValue === undefined || portionUnit === undefined) {
-              return null; // Return null if invalid, so it's not pushed
-          }
-
-          let caloriesToAdd = 0;
-          let proteinToAdd = 0;
-          let carbsToAdd = 0;
-          let fatToAdd = 0;
-
-          if (food.unit === 'unit') {
-            caloriesToAdd = (food.caloriesPerUnit || 0) * portionValue;
-            proteinToAdd = (food.proteinPerUnit || 0) * portionValue;
-            carbsToAdd = (food.carbsPerUnit || 0) * portionValue;
-            fatToAdd = (food.fatPerUnit || 0) * portionValue;
-          } else { // g or ml
-            caloriesToAdd = (food.caloriesPer100g || 0) * (portionValue / 100);
-            proteinToAdd = (food.proteinPer100g || 0) * (portionValue / 100);
-            carbsToAdd = (food.carbsPer100g || 0) * (portionValue / 100);
-            fatToAdd = (food.fatPer100g || 0) * (portionValue / 100);
-          }
-
-          const newItem = {
-            name: food.name || 'Unknown Food',
-            portion: `${portionValue}${portionUnit}`,
-            calories: caloriesToAdd,
-            protein: proteinToAdd,
-            carbs: carbsToAdd,
-            fat: fatToAdd,
-          };
-          
-          mealItems.push(newItem);
-          currentCals += caloriesToAdd;
-          availableFoodsForMeal = availableFoodsForMeal.filter(item => item.name !== food.name);
-          return newItem;
-      };
-
-      // Meal composition strategy
-      if (mealType === 'breakfast') {
-        const primaryBreakfastFood = getFoodByCategory('carb', availableFoodsForMeal).filter(f => f.name.includes('Oats') || f.name.includes('Porridge'))[0];
-        if (primaryBreakfastFood) addFoodItem(primaryBreakfastFood, Math.floor(Math.random() * 100) + 50, primaryBreakfastFood.unit);
-
-        const proteinSource = getFoodByCategory('protein', availableFoodsForMeal).filter(f => f.name.includes('Eggs'))[0];
-        if (proteinSource) addFoodItem(proteinSource, Math.floor(Math.random() * 2) + 1, proteinSource.unit);
-
-        const dairySource = getFoodByCategory('dairy', availableFoodsForMeal)[0] || getFoodByCategory('protein', availableFoodsForMeal).filter(f => f.name.includes('Milk') || f.name.includes('Yoghurt'))[0];
-        if (dairySource) addFoodItem(dairySource, Math.floor(Math.random() * 100) + 100, dairySource.unit);
-
-        const fruitSource = getFoodByCategory('fruit', availableFoodsForMeal)[0] || getFoodByCategory('fat', availableFoodsForMeal).filter(f => f.name.includes('Avocado'))[0];
-        if (fruitSource) addFoodItem(fruitSource, Math.floor(Math.random() * 100) + 50, fruitSource.unit);
-
-      } else if (mealType === 'lunch' || mealType === 'dinner') {
-        const mainDishes = getFoodByCategory('dish', availableFoodsForMeal);
-        const mainDish = mainDishes[Math.floor(Math.random() * mainDishes.length)];
-
-        if (mainDish && Math.random() > 0.4) {
-            addFoodItem(mainDish, Math.floor(Math.random() * 150) + 150, mainDish.unit);
-        } else {
-            const carb = getFoodByCategory('carb', availableFoodsForMeal)[0];
-            const protein = getFoodByCategory('protein', availableFoodsForMeal)[0];
-            const veggie = getFoodByCategory('veg', availableFoodsForMeal)[0];
-
-            if (carb) addFoodItem(carb, Math.floor(Math.random() * 150) + 100, carb.unit);
-            if (protein) addFoodItem(protein, Math.floor(Math.random() * 70) + 80, protein.unit);
-            if (veggie) addFoodItem(veggie, Math.floor(Math.random() * 70) + 50, veggie.unit);
-
-            if (currentCals < targetCals * 0.8) {
-              const secondaryProteins = getFoodByCategory('protein', availableFoodsForMeal);
-              const secondaryProtein = secondaryProteins[Math.floor(Math.random() * secondaryProteins.length)];
-              if(secondaryProtein) addFoodItem(secondaryProtein, Math.floor(Math.random() * 50) + 50, secondaryProtein.unit);
-            }
-        }
-      }
-
-      let adjustmentAttempts = 0;
-      while (Math.abs(currentCals - targetCals) > 100 && adjustmentAttempts < maxAttempts) {
-        adjustmentAttempts++;
-        if (currentCals < targetCals) {
-          const potentialAdditions = getFoodByCategory('carb', availableFoodsForMeal).concat(getFoodByCategory('protein', availableFoodsForMeal));
-          const itemToAdd = potentialAdditions[Math.floor(Math.random() * potentialAdditions.length)];
-          if (itemToAdd) {
-            const portionFactor = itemToAdd.unit === 'unit' ? 1 : 100;
-            const caloriesPerUnitOr100g = itemToAdd.caloriesPerUnit || itemToAdd.caloriesPer100g;
-            const addPortion = Math.min(50, Math.max(10, (targetCals - currentCals) / (caloriesPerUnitOr100g / portionFactor) / 2));
-            if (addPortion > 0) {
-              addFoodItem(itemToAdd, addPortion, itemToAdd.unit);
-            }
-          }
-        } else if (currentCals > targetCals && mealItems.length > 0) {
-          const largestItem = mealItems.reduce((prev, current) => (prev.calories > current.calories ? prev : current));
-          if (largestItem.calories > 50) {
-            const portionMatch = largestItem.portion.match(/\d+/);
-            const currentPortion = portionMatch ? parseFloat(portionMatch[0]) : 0;
-
-            const originalFoodInfo = foodDatabase.find(f => f.name === largestItem.name);
-            if (originalFoodInfo && currentPortion > 0) {
-                const caloriesPerUnitOr100g = originalFoodInfo.caloriesPerUnit || originalFoodInfo.caloriesPer100g;
-                const portionFactor = originalFoodInfo.unit === 'unit' ? 1 : 100;
-                
-                const reductionAmount = Math.max(10, Math.floor((currentCals - targetCals) / (caloriesPerUnitOr100g / portionFactor) / 2));
-                const newPortion = Math.max(0, currentPortion - reductionAmount);
-
-                if (newPortion > 0) {
-                    const itemIndex = mealItems.findIndex(item => item.name === largestItem.name);
-                    if (itemIndex !== -1) {
-                        let newCalories = 0;
-                        if (originalFoodInfo.unit === 'unit') {
-                            newCalories = (originalFoodInfo.caloriesPerUnit || 0) * newPortion;
-                        } else {
-                            newCalories = (originalFoodInfo.caloriesPer100g || 0) * (newPortion / 100);
-                        }
-                        currentCals -= (largestItem.calories - newCalories);
-                        mealItems[itemIndex] = { ...largestItem, portion: `${newPortion}${originalFoodInfo.unit}`, calories: newCalories };
-                    }
-                } else {
-                    mealItems = mealItems.filter(item => item.name !== largestItem.name);
-                    currentCals -= largestItem.calories;
-                }
-            }
-          }
-        }
-      }
-
-      return {
-        items: mealItems,
-        totalCalories: mealItems.reduce((sum, item) => sum + item.calories, 0),
-        totalProtein: mealItems.reduce((sum, item) => sum + (item.protein || 0), 0),
-        totalCarbs: mealItems.reduce((sum, item) => sum + (item.carbs || 0), 0),
-        totalFat: mealItems.reduce((sum, item) => sum + (item.fat || 0), 0),
-      };
+    // Distribute calories: breakfast 30%, lunch 40%, dinner 30%
+    const dailyTarget = parseFloat(calorieGoal);
+    const mealTargets = {
+      breakfast: dailyTarget * 0.3,
+      lunch: dailyTarget * 0.4,
+      dinner: dailyTarget * 0.3,
     };
 
-    let usedFoodsOverall = new Set();
+    // Track foods used for the whole week to maximize variety
+    const weekUsedFoodsSet = new Set();
 
     for (const day of daysOfWeek) {
       const dayMeals = {
@@ -402,39 +445,55 @@ function App() {
         dinner: [],
         totalCalories: 0,
       };
+      // Track foods used for this day to maximize variety
+      const usedFoodsSet = new Set();
 
-      const breakfastResult = getUniqueMealForTarget(dailyTargetCalories * 0.25, 'breakfast', Array.from(usedFoodsOverall));
-      breakfastResult.items.forEach(item => usedFoodsOverall.add(item.name));
-      dayMeals.breakfast = breakfastResult.items;
+      ["breakfast", "lunch", "dinner"].forEach(mealType => {
+        const mealFoods = pickFoodsForMeal({
+          mealType,
+          calorieTarget: mealTargets[mealType],
+          userFoods,
+          foodDatabase,
+          usedFoodsSet,
+          weekUsedFoodsSet,
+          maxItems: 5,
+          minPortion: 100,
+          maxPortion: 300,
+        });
+        dayMeals[mealType] = mealFoods;
+      });
 
-      const lunchResult = getUniqueMealForTarget(dailyTargetCalories * 0.40, 'lunch', Array.from(usedFoodsOverall));
-      lunchResult.items.forEach(item => usedFoodsOverall.add(item.name));
-      dayMeals.lunch = lunchResult.items;
+      dayMeals.totalCalories =
+        dayMeals.breakfast.reduce((sum, item) => sum + (item.calories || 0), 0) +
+        dayMeals.lunch.reduce((sum, item) => sum + (item.calories || 0), 0) +
+        dayMeals.dinner.reduce((sum, item) => sum + (item.calories || 0), 0);
 
-      const dinnerResult = getUniqueMealForTarget(dailyTargetCalories * 0.35, 'dinner', Array.from(usedFoodsOverall));
-      dinnerResult.items.forEach(item => usedFoodsOverall.add(item.name));
-      dayMeals.dinner = dinnerResult.items;
-
-      dayMeals.totalCalories = dayMeals.breakfast.reduce((sum, item) => sum + item.calories, 0) +
-                               dayMeals.lunch.reduce((sum, item) => sum + item.calories, 0) +
-                               dayMeals.dinner.reduce((sum, item) => sum + item.calories, 0);
       generatedMenu.push(dayMeals);
     }
 
     setWeeklyMenu(generatedMenu);
-    setMessage("Weekly menu generated with improved variety!");
+    setMessage(
+      "Weekly menu generated using your foods and our database, matching your calorie goal!"
+    );
 
     if (db && userId) {
       try {
-        const menuDocRef = doc(db, `artifacts/${appId}/users/${userId}/menus`, 'currentWeeklyMenu');
-        await setDoc(menuDocRef, { menu: generatedMenu, generatedAt: new Date().toISOString() });
+        const menuDocRef = doc(
+          db,
+          `artifacts/${appId}/users/${userId}/menus`,
+          "currentWeeklyMenu"
+        );
+        await setDoc(menuDocRef, {
+          menu: generatedMenu,
+          generatedAt: new Date().toISOString(),
+        });
         setMessage(prev => prev + " Menu saved to Firestore.");
       } catch (error) {
         console.error("Error saving weekly menu:", error);
         setMessage(prev => prev + ` Error saving menu: ${error.message}`);
       }
     }
-  }, [calorieGoal, db, userId]);
+  }, [calorieGoal, db, userId, userFoods]);
 
 
   const analyzeCustomMeal = useCallback(() => {
@@ -548,6 +607,62 @@ function App() {
     return advisory;
   }, [userProfile]);
 
+
+  function FoodInputSection() {
+    const [input, setInput] = useState({ breakfast: '', lunch: '', dinner: '' });
+
+    const handleInputChange = (e) => {
+      const { name, value } = e.target;
+      setInput(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleSave = () => {
+      setUserFoods({
+        breakfast: input.breakfast.split(',').map(f => f.trim()).filter(Boolean),
+        lunch: input.lunch.split(',').map(f => f.trim()).filter(Boolean),
+        dinner: input.dinner.split(',').map(f => f.trim()).filter(Boolean),
+      });
+      setMessage("Your available foods have been saved.");
+    };
+
+    return (
+      <div className="p-6 bg-orange-50 rounded-lg shadow-inner mb-6">
+        <h2 className="text-2xl font-semibold text-orange-800 mb-4">Your Available Foods</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {['breakfast', 'lunch', 'dinner'].map(cat => (
+            <div key={cat}>
+              <label className="block text-sm font-medium text-gray-700 capitalize">{cat} items</label>
+              <textarea
+                name={cat}
+                value={input[cat]}
+                onChange={handleInputChange}
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 p-2 border"
+                placeholder={`e.g., ${cat === 'breakfast' ? 'eggs, oats, milk' : cat === 'lunch' ? 'ugali, beef, sukuma' : 'rice, beans, cabbage'}`}
+              />
+            </div>
+          ))}
+        </div>
+        <button
+          onClick={handleSave}
+          className="mt-4 bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105"
+        >
+          Save My Foods
+        </button>
+      </div>
+    );
+  }
+
+  function handleEmailPlan() {
+    const email = prompt("Enter your email address to receive the meal plan:");
+    if (!email) return;
+    // For demo: just show a message. In production, send via backend/email API.
+    setMessage(`Meal plan would be sent to ${email} (feature requires backend integration).`);
+  }
+
+  function handleGoogleCalendar() {
+    // For demo: just show a message. In production, generate .ics or use Google Calendar API.
+    setMessage("Google Calendar integration would be triggered here (feature requires backend/OAuth).");
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-100 p-6 font-inter text-gray-800 antialiased">
@@ -788,6 +903,23 @@ function App() {
           <div className="bg-white p-4 rounded-md shadow-sm border border-pink-200">
             <p className="text-gray-700 whitespace-pre-wrap">{getWorkoutAdvisory()}</p>
           </div>
+        </div>
+
+        <FoodInputSection />
+
+        <div className="flex flex-wrap gap-4 mb-6">
+          <button
+            onClick={handleEmailPlan}
+            className="flex-1 min-w-[120px] bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105"
+          >
+            Email Meal Plan
+          </button>
+          <button
+            onClick={handleGoogleCalendar}
+            className="flex-1 min-w-[120px] bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105"
+          >
+            Add to Google Calendar
+          </button>
         </div>
       </div>
     </div>
