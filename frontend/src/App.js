@@ -670,7 +670,7 @@ function App() {
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
       <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-xl overflow-hidden p-8 space-y-8 md:space-y-10">
-        <h1 className="text-4xl font-bold text-center text-green-700 mb-6">Kenyan Diet Tracker</h1>
+        <h1 className="text-4xl font-bold text-center text-green-700 mb-6">Personal Diet Planner</h1>
 
         {/* User Profile Section */}
         <div className="p-6 bg-green-50 rounded-lg shadow-inner">
